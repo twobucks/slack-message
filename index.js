@@ -1,4 +1,4 @@
-const slack = require("slack");
+const request = require("request");
 const log = require("npmlog");
 const Spinner = require('cli-spinner').Spinner;
 const args = process.argv.slice(2);
@@ -17,17 +17,29 @@ function slackMessage(){
   sendMessage(message);
 }
 
+function generateSlackUrl(message) {
+  return `https://slack.com/api/chat.postMessage?token=${message.token}` +
+          `&channel=${message.channel}&text=${message.text}`;
+}
+
 function sendMessage(message) {
+  const sendMessageUrl = generateSlackUrl(message);
   const spinner = startSpinner("Sending message..", 8);
-  slack.chat.postMessage(message, (err, data) => {
-    process.stdout.write('\n');
-    spinner.stop();
+
+  request.get(sendMessageUrl,(err, res, body) => {
     if(err) {
       return log.error(err);
+    }
+    const bodyJSON = JSON.parse(body);
+    process.stdout.write('\n');
+    spinner.stop();
+    if (!bodyJSON.ok) {
+      return log.error(body);
     }
     log.info("Message sent!");
   });
 }
+
 
 function startSpinner(text, type) {
   const spinner = new Spinner(text);
