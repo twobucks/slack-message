@@ -7,9 +7,9 @@ const args = process.argv.slice(2);
 
 function slackMessage(){
   if(args.length < 3) {
-    return log.error("All properties are required 'slack-message <token> <channel> <message>'");
+    throw new Error("All properties are required 'slack-message <token> <channel> <message>'");
   } else if (args.length > 3) {
-    return log.error("No additional properties allowed 'slack-message <token> <channel> <message>'");
+    throw new Error("No additional properties allowed 'slack-message <token> <channel> <message>'");
   }
   const message = {
     token: args[0],
@@ -32,8 +32,8 @@ function sendMessage(message) {
       throw new Error(err);
     }
     const bodyJSON = JSON.parse(body);
-    process.stdout.write('\n');
     spinner.stop();
+    process.stdout.write('\n');
     if (!bodyJSON.ok) {
       throw new Error(body);
     }

@@ -7,8 +7,9 @@
     "slack-message": "bin/slack"
   },
   "scripts": {
-    "test": "ava ./tests/* --verbose",
-    "lint": "eslint ./"
+    "test": "ava ./tests/*",
+    "lint": "eslint ./",
+    "validate": "npm run lint && npm test"
   },
   "repository": {
     "type": "git",

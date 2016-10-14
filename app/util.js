@@ -3,7 +3,7 @@ const log = require("npmlog");
 const Spinner = require('cli-spinner').Spinner;
 
 function showErrors(errors) {
-  // errors needs to be an object
+  // errors needs to be an array
   for (let key in errors) {
     // skip loop if the property is from prototype
     if (!errors.hasOwnProperty(key)) continue;
