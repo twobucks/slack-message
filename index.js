@@ -5,9 +5,9 @@ const args = process.argv.slice(2);
 
 function slackMessage(){
   if(args.length < 3) {
-    return log.error("All fields are required 'slack-message <token> <channel> <message>'");
+    return log.error("All properties are required 'slack-message <token> <channel> <message>'");
   } else if (args.length > 3) {
-    return log.error("No additional fields allowed 'slack-message <token> <channel> <message>'");
+    return log.error("No additional properties allowed 'slack-message <token> <channel> <message>'");
   }
   const message = {
     token: args[0],
@@ -18,9 +18,7 @@ function slackMessage(){
 }
 
 function sendMessage(message) {
-  const spinner = new Spinner("Sending message..");
-  spinner.setSpinnerString(8);
-  spinner.start();
+  const spinner = startSpinner("Sending message..", 8);
   slack.chat.postMessage(message, (err, data) => {
     process.stdout.write('\n');
     spinner.stop();
@@ -29,6 +27,13 @@ function sendMessage(message) {
     }
     log.info("Message sent!");
   });
+}
+
+function startSpinner(text, type) {
+  const spinner = new Spinner(text);
+  spinner.setSpinnerString(type);
+  spinner.start();
+  return spinner;
 }
 
 module.exports = slackMessage;
