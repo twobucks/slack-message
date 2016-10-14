@@ -6,6 +6,9 @@
   "bin": {
     "slack-message": "bin/slack"
   },
+  "scripts": {
+    "test": "ava ./tests/* --verbose"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/twobucks/slack-message.git"
@@ -19,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/twobucks/slack-message/issues"
   },
-  "homepage": "https://github.com/twobucks/slack-message#readme"
+  "homepage": "https://github.com/twobucks/slack-message#readme",
+  "dependencies": {
+    "cli-spinner": "^0.2.5",
+    "npmlog": "^4.0.0",
+    "slack": "^7.7.3"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0"
+  }
 }
