@@ -1,3 +1,4 @@
+"use strict";
 const request = require("request");
 const log = require("npmlog");
 const Spinner = require('cli-spinner').Spinner;
@@ -26,7 +27,7 @@ function sendMessage(message) {
   const sendMessageUrl = generateSlackUrl(message);
   const spinner = startSpinner("Sending message..", 8);
 
-  request.get(sendMessageUrl,(err, res, body) => {
+  request.get(sendMessageUrl, (err, res, body) => {
     if(err) {
       return log.error(err);
     }
