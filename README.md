@@ -13,6 +13,21 @@
   slack-message "token" "channel" "My message here"
 ```
 
+If you save a token you can use a shorter version 
+```
+  slack-message "channel" "My message here"
+```
+
+To save a token  
+```
+  slack-message "save-token" "here-is-my-token"
+```
+
+To delete a token  
+```
+  slack-message "delete-token" "here-is-my-token"
+```
+
 
 The idea for this package can be found [here.](https://github.com/mikaelbr/open-source-ideas/issues/2)
 
