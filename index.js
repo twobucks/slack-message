@@ -1,7 +1,8 @@
 "use strict";
 const request = require("request");
 const log = require("npmlog");
-const Spinner = require('cli-spinner').Spinner;
+const util = require("./app/util");
+const urlGenerator = require("./app/urlGenerator");
 const args = process.argv.slice(2);
 
 function slackMessage(){
@@ -18,35 +19,29 @@ function slackMessage(){
   sendMessage(message);
 }
 
-function generateSlackUrl(message) {
-  return `https://slack.com/api/chat.postMessage?token=${message.token}` +
-          `&channel=${message.channel}&text=${message.text}`;
-}
-
 function sendMessage(message) {
-  const sendMessageUrl = generateSlackUrl(message);
-  const spinner = startSpinner("Sending message..", 8);
+  const sendMessageUrl = urlGenerator.generateSlackUrl(message);
+  if(typeof sendMessageUrl !== "string") {
+    util.showErrors(sendMessageUrl);
+    throw new Error("Could not generate a valid url :(");
+  }
 
+  const spinner = util.startSpinner("Sending message..", 8);
   request.get(sendMessageUrl, (err, res, body) => {
     if(err) {
-      return log.error(err);
+      throw new Error(err);
     }
     const bodyJSON = JSON.parse(body);
     process.stdout.write('\n');
     spinner.stop();
     if (!bodyJSON.ok) {
-      return log.error(body);
+      throw new Error(body);
     }
     log.info("Message sent!");
   });
 }
 
-
-function startSpinner(text, type) {
-  const spinner = new Spinner(text);
-  spinner.setSpinnerString(type);
-  spinner.start();
-  return spinner;
-}
-
-module.exports = slackMessage;
+module.exports = {
+  slackMessage,
+  sendMessage
+};
