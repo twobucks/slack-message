@@ -25,7 +25,7 @@ To save a token
 
 To delete a token  
 ```
-  slack-message "delete-token" "here-is-my-token"
+  slack-message "delete-token"
 ```
 
 
