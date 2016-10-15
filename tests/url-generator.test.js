@@ -1,13 +1,10 @@
+'use strict'
 const test = require('ava')
 const urlGenerator = require('../lib/url-generator')
 
 test('It should fail with url generation', t => {
   const url = urlGenerator.generateSlackUrl({})
-  t.deepEqual(url, {
-    token: ['Token can\'t be blank'],
-    channel: ['Channel can\'t be blank'],
-    text: ['Text can\'t be blank']
-  })
+  t.deepEqual(url, ['Token can\'t be blank', 'Channel can\'t be blank', 'Text can\'t be blank'])
 })
 
 test('It should fail with url generation because message is missing', t => {
@@ -16,9 +13,7 @@ test('It should fail with url generation because message is missing', t => {
     channel: '321'
   }
   const url = urlGenerator.generateSlackUrl(message)
-  t.deepEqual(url, {
-    text: ['Text can\'t be blank']
-  })
+  t.deepEqual(url, ['Text can\'t be blank'])
 })
 
 test('It should generate a valid post message url', t => {
