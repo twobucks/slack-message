@@ -25,3 +25,24 @@ test('It should delete a token', t => {
   t.is(token.getToken(), '')
   fs.unlinkSync(token.tokenLocation)
 })
+
+test('It should not generate from env', t => {
+  const tok = token.generateMessageWithEnv()
+  t.falsy(tok)
+})
+
+test('It should generate a token from env without args', t => {
+  process.env.SLACK_TOKEN = 123
+  const tok = token.generateMessageWithEnv()
+  t.falsy(tok)
+})
+
+test('It should generate a token from env', t => {
+  process.env.SLACK_TOKEN = 123
+  const tok = token.generateMessageWithEnv(['test', 'This is test'])
+  t.deepEqual(tok, {
+    token: '123',
+    channel: 'test',
+    text: 'This is test'
+  })
+})
