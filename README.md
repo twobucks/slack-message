@@ -10,6 +10,14 @@ The idea for this package can be found [here.](https://github.com/mikaelbr/open-
 ```
 
 ## Usage
+#####  First of all you will need an working token.
+The easiest way to get a testing one is [api.slack.com/web](https://api.slack.com/web)
+
+If you need a live token please follow the instructions about oAuth [api.slack.com/docs/oauth](https://api.slack.com/docs/oauth)
+___
+
+Sending your first message
+
 ```
   slack-message "token" "channel" "My message here"
 ```
