@@ -12,15 +12,15 @@ function findToken(token, path) {
   return token
 }
 
-function generateMessageObject(message, channel, opts) {
+function generateMessageObject(channel, message, opts) {
   return {
+    channel,
     token: opts.token,
-    channel: opts.channelName,
     text: message
   }
 }
 
-function send(message, channel, opts) {
+function send(channel, message, opts) {
   opts = opts || {}
 
   opts.token = findToken(opts.token)
@@ -41,7 +41,7 @@ function send(message, channel, opts) {
     tokenHelper.saveToken(opts.token)
   }
 
-  message = generateMessageObject(message, channel, opts)
+  message = generateMessageObject(channel, message, opts)
 
   const sendMessageUrl = urlGenerator.generateSlackUrl(message)
 

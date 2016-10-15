@@ -17,9 +17,9 @@ You will need a working token. The easiest way to get a testing one is [api.slac
 If you need a live token please follow the instructions about oAuth [api.slack.com/docs/oauth](https://api.slack.com/docs/oauth).
 
 ```
-$ slack
+  $ slack-message
 
-  Usage: slack [options] <message> <channel name>
+  Usage: slack [options] <channel name> <message>
 
   Options:
 
@@ -33,17 +33,17 @@ $ slack
 
 Sending a message with inline token
 ```
-$ slack -t "token-123-321" "My Message" "channel"
+$ slack-message -t "token-123-321" "channel" "I need some pancakes folks"
 ```
 
 Sending a message and saving the token for a later use
 ```
-$ slack -t "token-123-321" -s "My Message" "channel"
+$ slack-message -t "token-123-321" -s "channel" "really, I need pancakes"
 ```
 
 If you have a saved token
 ```
-$ slack "My Message" "channel"
+$ slack-message "channel" "send pancakes and hurry"
 ```
 
 ## License

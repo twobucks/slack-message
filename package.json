@@ -4,7 +4,7 @@
   "description": "Send slack messages from terminal",
   "main": "index.js",
   "bin": {
-    "slack-message": "bin/slack"
+    "slack-message": "bin/slack-message"
   },
   "scripts": {
     "test": "ava --verbose",

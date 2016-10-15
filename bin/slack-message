@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+'use strict'
+const program = require('commander')
+
+const main = require('../')
+const json = require('../package.json')
+
+function run() {
+  program
+    .version(json.version)
+    .usage('[options] <channel name> <message>')
+    .option('-t, --token <token>', 'token to use, reads SLACK_TOKEN if provided')
+    .option('-s, --save-token', 'saves token for later use')
+    .parse(process.argv)
+
+  if (program.args.length < 2) {
+    program.outputHelp()
+    return
+  }
+
+  const channel = program.args[0]
+  const message = program.args[1]
+
+  main.send(channel, message, {
+    token: program.token,
+    saveToken: program.saveToken,
+    removeToken: program.removeToken
+  })
+}
+run()
