@@ -12,7 +12,7 @@ function findToken(token, path) {
   return token
 }
 
-function generateMessageObject(message, opts) {
+function generateMessageObject(message, channel, opts) {
   return {
     token: opts.token,
     channel: opts.channelName,
@@ -20,7 +20,7 @@ function generateMessageObject(message, opts) {
   }
 }
 
-function send(message, opts) {
+function send(message, channel, opts) {
   opts = opts || {}
 
   opts.token = findToken(opts.token)
@@ -29,12 +29,21 @@ function send(message, opts) {
     throw new Error('Token is required')
   }
 
+  if (!message) {
+    throw new Error('Message is required')
+  }
+
+  if (!channel) {
+    throw new Error('Channel is required')
+  }
+
   if (opts.saveToken) {
     tokenHelper.saveToken(opts.token)
   }
 
-  const messageObject = generateMessageObject(message, opts)
-  const sendMessageUrl = urlGenerator.generateSlackUrl(messageObject)
+  message = generateMessageObject(message, channel, opts)
+
+  const sendMessageUrl = urlGenerator.generateSlackUrl(message)
 
   postToSlack(sendMessageUrl)
 }

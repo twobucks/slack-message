@@ -5,10 +5,9 @@ var json = require('../package.json')
 
 program.
   version(json.version).
-  usage('[options] <message>').
-  option('-t, --token <token>', 'token to use').
+  usage('[options] <message> <channel name>').
+  option('-t, --token <token>', 'token to use, reads SLACK_TOKEN if provided').
   option('-s, --save-token', 'saves token for later use').
-  option('-c, --channel-name <channel>', 'channel to post a message to').
   parse(process.argv)
 
 if (program.args.length === 0) {
@@ -16,9 +15,11 @@ if (program.args.length === 0) {
   return
 }
 
-main.send(program.args[0], {
+const message = program.args[0]
+const channel = program.args[1]
+
+main.send(message, channel, {
   token: program.token,
   saveToken: program.saveToken,
   removeToken: program.removeToken,
-  channelName: program.channelName
 })
