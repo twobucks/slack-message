@@ -11,13 +11,15 @@ test("It should return false because token doesn't exists", t => {
   fs.unlinkSync(token.tokenLocation);
 });
 
-test("It should create and delete the token", t => {
+test("It should create a token", t => {
   fs.openSync(token.tokenLocation, 'w');
 
   token.saveToken(newToken);
   t.is(token.tokenExists(), true);
   t.is(token.getToken(), newToken);
+});
 
+test("It should delete a token", t => {
   token.deleteToken();
   t.is(token.tokenExists(), false);
   t.is(token.getToken(), '');
