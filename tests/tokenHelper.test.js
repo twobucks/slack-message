@@ -2,7 +2,7 @@
 const test = require("ava");
 const fs = require('fs');
 
-const token = require("../app/tokenHelper");
+const token = require("../lib/tokenHelper");
 const newToken = "this-is-a-new-token";
 
 test("It should return false because token doesn't exists", t => {

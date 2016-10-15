@@ -1,6 +1,6 @@
 "use strict";
 const test = require("ava");
-const urlGenerator = require("../app/urlGenerator");
+const urlGenerator = require("../lib/urlGenerator");
 
 test("It should fail with url generation", t => {
   const url = urlGenerator.generateSlackUrl({});

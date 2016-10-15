@@ -2,9 +2,9 @@
 const request = require("request");
 const log = require("npmlog");
 
-const util = require("./app/util");
-const urlGenerator = require("./app/urlGenerator");
-const token = require('./app/tokenHelper');
+const util = require("./lib/util");
+const urlGenerator = require("./lib/urlGenerator");
+const token = require('./lib/tokenHelper');
 
 const args = process.argv.slice(2);
 
