@@ -37,13 +37,17 @@ function send(message, opts) {
 
   const sendMessageUrl = urlGenerator.generateSlackUrl(message)
 
-  if (typeof sendMessageUrl !== 'string') {
-    util.showErrors(sendMessageUrl)
+  postToSlack(sendMessageUrl)
+}
+
+function postToSlack(url) {
+  if (typeof url !== 'string') {
+    util.showErrors(url)
     throw new Error('Could not generate a valid url :(')
   }
 
   const spinner = util.startSpinner('Sending message..', 8)
-  request.get(sendMessageUrl, (err, res, body) => {
+  request.get(url, (err, res, body) => {
     if (err) {
       throw new Error(err)
     }
@@ -59,5 +63,6 @@ function send(message, opts) {
 
 module.exports = {
   send,
+  postToSlack,
   findToken
 }
