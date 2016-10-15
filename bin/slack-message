@@ -23,8 +23,7 @@ function run() {
 
   main.send(channel, message, {
     token: program.token,
-    saveToken: program.saveToken,
-    removeToken: program.removeToken
+    saveToken: program.saveToken
   })
 }
 run()
