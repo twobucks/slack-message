@@ -37,7 +37,7 @@ Sending a message with inline token
 
 Sending a message and saving the token for a later use
 ```
-  slack-message -s "token-123-321" "channel" "My Message"
+  slack-message -t -s "token-123-321" "channel" "My Message"
 ```
 
 If you have a saved token

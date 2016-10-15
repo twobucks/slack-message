@@ -19,7 +19,7 @@ test('It should return false because token doesn\'t exist', t => {
 test('It should create a token file', t => {
   tokenHelper.saveToken(newToken, tokenLocation)
   t.is(tokenHelper.tokenExists(tokenLocation), true)
-  t.is(tokenHelper.getToken(), newToken)
+  t.is(tokenHelper.getToken(tokenLocation), newToken)
 })
 
 test('it should remove a token file', t => {
