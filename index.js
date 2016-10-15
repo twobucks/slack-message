@@ -1,21 +1,50 @@
 "use strict";
 const request = require("request");
 const log = require("npmlog");
+
 const util = require("./app/util");
 const urlGenerator = require("./app/urlGenerator");
+const token = require('./app/tokenHelper');
+
 const args = process.argv.slice(2);
 
 function slackMessage(){
-  if(args.length < 3) {
-    throw new Error("All properties are required 'slack-message <token> <channel> <message>'");
-  } else if (args.length > 3) {
-    throw new Error("No additional properties allowed 'slack-message <token> <channel> <message>'");
+  if (args.length == 1 && args[0] == "delete-token") {
+    token.deleteToken();
+    return log.info("Token deleted");
+  } else if(args.length == 2 && args[0] == "save-token") {
+    token.saveToken(args[1]);
+    return log.info("Token saved: " + args[1]);
   }
-  const message = {
-    token: args[0],
-    channel: args[1],
-    text: args[2]
+
+  const message = {};
+
+  if (token.tokenExists()) {
+    if (args.length < 2) {
+      return log.error("All properties are required 'slack-message <channel> <message>'");
+    } else if (args.length > 2) {
+      return log.error("No additional properties allowed 'slack-message <channel> <message>'");
+    } else {
+      Object.assign(message, {
+        token: token.getToken(),
+        channel: args[0],
+        text: args[1]
+      });
+    }
+  } else {
+    if (args.length < 3) {
+      return log.error("All properties are required 'slack-message <token> <channel> <message>'");
+    } else if (args.length > 3) {
+      return log.error("No additional properties allowed 'slack-message <token> <channel> <message>'");
+    } else {
+      Object.assign(message, {
+        token: args[0],
+        channel: args[1],
+        text: args[2]
+      });
+    }
   }
+
   sendMessage(message);
 }
 
