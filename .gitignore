@@ -2,3 +2,4 @@ node_modules
 .env
 npm-debug.log
 .idea
+slack.token

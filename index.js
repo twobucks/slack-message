@@ -9,43 +9,22 @@ const token = require('./lib/tokenHelper');
 const args = process.argv.slice(2);
 
 function slackMessage(){
-  if (args.length == 1 && args[0] == "delete-token") {
-    token.deleteToken();
-    return log.info("Token deleted");
-  } else if(args.length == 2 && args[0] == "save-token") {
-    token.saveToken(args[1]);
-    return log.info("Token saved: " + args[1]);
-  }
-
-  const message = {};
+  let message = token.generateMessageWithToken(args);
+  checkAction();
 
   if (token.tokenExists()) {
-    if (args.length < 2) {
-      return log.error("All properties are required 'slack-message <channel> <message>'");
-    } else if (args.length > 2) {
-      return log.error("No additional properties allowed 'slack-message <channel> <message>'");
-    } else {
-      Object.assign(message, {
-        token: token.getToken(),
-        channel: args[0],
-        text: args[1]
-      });
-    }
-  } else {
-    if (args.length < 3) {
-      return log.error("All properties are required 'slack-message <token> <channel> <message>'");
-    } else if (args.length > 3) {
-      return log.error("No additional properties allowed 'slack-message <token> <channel> <message>'");
-    } else {
-      Object.assign(message, {
-        token: args[0],
-        channel: args[1],
-        text: args[2]
-      });
-    }
+    message = token.generateMessegeWithoutToken(args);
   }
 
   sendMessage(message);
+}
+
+function checkAction() {
+  if (args.length == 1 && args[0] === "delete-token") {
+    token.deleteToken();
+  } else if(args.length == 2 && args[0] === "save-token") {
+    token.saveToken(args[1]);
+  }
 }
 
 function sendMessage(message) {
