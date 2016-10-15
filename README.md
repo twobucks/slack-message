@@ -13,28 +13,36 @@ The idea for this package can be found [here.](https://github.com/mikaelbr/open-
 #####  First of all you will need an working token.
 The easiest way to get a testing one is [api.slack.com/web](https://api.slack.com/web)
 
-If you need a live token please follow the instructions about oAuth [api.slack.com/docs/oauth](https://api.slack.com/docs/oauth)
+If you need a live token please follow the instructions about oAuth [api.slack.com/docs/oauth](https://api.slack.com/docs/oauth).
+
 ___
 
-Sending your first message
+```
+  slack-message [options] <channel> <message>
+```
+##### Token can be saved as `SLACK_TOKEN` in `env` and it will be used automatically.
+#### Options
+* `-h`, `--help` - output usage information
+* `-v`, `--version` - output the version number
+* `-t`, `--token` - token to use for this message
+* `-s`, `--save-token` - sending a message and saving a token for later use
+
+## Examples
+
+Sending a message with inline token
 
 ```
-  slack-message "token" "channel" "My message here"
+  slack-message -t "token-123-321" "channel" "My Message"
 ```
 
-If you save a token you can use a shorter version
+Sending a message and saving the token for a later use
 ```
-  slack-message "channel" "My message here"
-```
-
-To save a token  
-```
-  slack-message "save-token" "here-is-my-token"
+  slack-message -s "token-123-321" "channel" "My Message"
 ```
 
-To delete a token  
+If you have a saved token
 ```
-  slack-message "delete-token"
+  slack-message "channel" "My Message"
 ```
 
 

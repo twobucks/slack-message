@@ -4,31 +4,39 @@ const log = require('npmlog')
 
 const util = require('./lib/util')
 const urlGenerator = require('./lib/url-generator')
-const token = require('./lib/token-helper')
+const tokenHelper = require('./lib/token-helper')
 
-const args = process.argv.slice(2)
-
-function slackMessage() {
-  let message = token.generateMessageWithToken(args)
-  checkAction()
-
-  if (token.tokenExists()) {
-    message = token.generateMessegeWithoutToken(args)
-  }
-
-  sendMessage(message)
+function findToken(token, path) {
+  token = token || tokenHelper.getToken(path) ||
+    process.env.SLACK_TOKEN
+  return token
 }
 
-function checkAction() {
-  if (args.length === 1 && args[0] === 'delete-token') {
-    token.deleteToken()
-  } else if (args.length === 2 && args[0] === 'save-token') {
-    token.saveToken(args[1])
+function generateMessageObject(message, opts) {
+  return {
+    token: opts.token,
+    channel: opts.channelName,
+    text: message
   }
 }
 
-function sendMessage(message) {
+function send(message, opts) {
+  opts = opts || {}
+
+  opts.token = findToken(opts.token)
+
+  if (!opts.token) {
+    throw new Error('Token is required')
+  }
+
+  if (opts.saveToken) {
+    tokenHelper.saveToken(opts.token)
+  }
+
+  message = generateMessageObject(message, opts)
+
   const sendMessageUrl = urlGenerator.generateSlackUrl(message)
+
   if (typeof sendMessageUrl !== 'string') {
     util.showErrors(sendMessageUrl)
     throw new Error('Could not generate a valid url :(')
@@ -50,6 +58,6 @@ function sendMessage(message) {
 }
 
 module.exports = {
-  slackMessage,
-  sendMessage
+  send,
+  findToken
 }
