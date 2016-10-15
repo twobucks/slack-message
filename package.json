@@ -1,6 +1,6 @@
 {
   "name": "slack-message",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "Send slack messages from terminal",
   "main": "index.js",
   "bin": {
