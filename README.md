@@ -1,5 +1,6 @@
 # Slack Message [![Build Status](https://travis-ci.org/twobucks/slack-message.svg?branch=master)](https://travis-ci.org/twobucks/slack-message) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
+![](https://twobucks.co/assets/slack-message.gif)
 
 Send messages from your terminal directly to the Slack channel.
 
