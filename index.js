@@ -33,9 +33,8 @@ function send(message, opts) {
     tokenHelper.saveToken(opts.token)
   }
 
-  message = generateMessageObject(message, opts)
-
-  const sendMessageUrl = urlGenerator.generateSlackUrl(message)
+  const messageObject = generateMessageObject(message, opts)
+  const sendMessageUrl = urlGenerator.generateSlackUrl(messageObject)
 
   postToSlack(sendMessageUrl)
 }
