@@ -1,8 +1,11 @@
 language: node_js
 node_js:
-  - "6"
-  - "5.11"
-  - "4.2.3"
+- '6'
+- '5.11'
+- 4.2.3
 script: npm run validate
 notifications:
-    email: false
+  email: false
+env:
+  matrix:
+    secure: Q2byFCY7ZzmfJ9SyaGpFxA3iYdcw4VAhXGUZUz2JZYm3Sq0RMyUJ/FwP2tA1GSfE19NOnbvHpLnFk20j5508VznwB1OHCySao4LKlaissVF0bDpfWxQkF52U39NQnyhfp0m93pnT7fTxhyxF8b04kQZSKqERBp+PUo3PSzvgtyBy5+6YCD8+ba9UndDVZAKllmQ6NonHuXfj7STfeMyKuDYROAKH3QGTwOolPYY/QLgEA+QIhBb6fdR9UjLmEiQvWOthtkOdu149d0PI0mLtnOR4SIhQbkK02nGneuG8lqA9o5RYFPp/amwaxgWEtZSKFmLzms4OualEabfXl3Sd3bAvPuKCD61RiW9G/SoisAB3Csy3pN9JC/XiliB29StV9kQ5mAxn83tabQqt05w8FRUrRmxhnNOUsuQdX4uiVzGxxhx/tvBd0eiW/o4RbFLYAYPAysUMNNF73tvTnesWqhPlFSXLf6DqFXtnJzltx/VUxpT5BYdLnTofo/Ug7mCLtj9kG87jH6I3l2C/ivc3pyZwKA7kbUixG+tsVU3bv5y19pd9EuY0+gPrf4CjiaT1cmp8LhBUBLENYKzHlPHOTp0WgaR/hzAWSkSMYFHfJoH6V13/yrMenW7lusvcb4Q4aFunO/flAr6itsW6z19nTCy0Iouyc/D+19//52bRHRk=
