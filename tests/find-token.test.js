@@ -22,7 +22,7 @@ test.after(() => {
   }
 })
 
-test('token passed as an argument has a highest priority', t => {
+test('token passed as an argument has highest priority', t => {
   const token = findToken(argToken)
 
   t.is(token, argToken)

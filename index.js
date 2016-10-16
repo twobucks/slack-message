@@ -1,5 +1,5 @@
 'use strict'
-const request = require('request')
+const request = require('request-promise')
 const log = require('npmlog')
 
 const util = require('./lib/util')
@@ -45,7 +45,7 @@ function send(channel, message, opts) {
 
   const sendMessageUrl = urlGenerator.generateSlackUrl(message)
 
-  postToSlack(sendMessageUrl)
+  return postToSlack(sendMessageUrl)
 }
 
 function postToSlack(url) {
@@ -55,10 +55,9 @@ function postToSlack(url) {
   }
 
   const spinner = util.startSpinner('Sending message..', 8)
-  request.get(url, (err, res, body) => {
-    if (err) {
-      throw new Error(err)
-    }
+  const promise = request.get(url)
+
+  promise.then(body => {
     const bodyJSON = JSON.parse(body)
     spinner.stop()
     process.stdout.write('\n')
@@ -66,7 +65,13 @@ function postToSlack(url) {
       throw new Error(body)
     }
     log.info('Message sent!')
+  }, err => {
+    if (err) {
+      throw err
+    }
   })
+
+  return promise
 }
 
 module.exports = {
