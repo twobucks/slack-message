@@ -2,9 +2,13 @@
 
 ![](https://twobucks.co/assets/slack-message.gif)
 
-Send messages from your terminal directly to the Slack channel.
+Send messages from your terminal directly to the Slack channel. The idea for this was published in [mikaelbr/open-source-ideas](https://github.com/mikaelbr/open-source-ideas/issues/2).
 
-The idea for this package can be found [here](https://github.com/mikaelbr/open-source-ideas/issues/2).
+Common use cases for this package are:
+
+* Slack notifications when a CI server finishes its work
+* Slack notifications when a deployment is complete
+* Slack notifications when any other process exits
 
 ## Install
 
