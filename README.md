@@ -8,9 +8,9 @@ Send messages from your terminal directly to the Slack channel. The idea for thi
 
 Common use cases for this package are:
 
-* Slack notifications when a CI server finishes its work
-* Slack notifications when a deployment is complete
-* Slack notifications when any other process exits
+* get a Slack notification when a CI server finishes its work
+* get a Slack notification when a deployment is complete
+* get a Slack notification when any other process exits
 
 ## Install
 
