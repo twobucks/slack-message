@@ -41,25 +41,25 @@ If you need a live token please follow the instructions about oAuth [api.slack.c
 Sending a message with inline token
 
 ```
-$ slack-message -t "token-123-321" "channel" "I need some pancakes folks"
+$ slack-message -t token-123-321 channel "I need some pancakes folks"
 ```
 
 Sending a message and saving the token for a later use
 
 ```
-$ slack-message -t "token-123-321" -s "channel" "really, I need pancakes"
+$ slack-message -t token-123-321 -s channel "really, I need pancakes"
 ```
 
 If you have a saved token
 
 ```
-$ slack-message "channel" "send pancakes and hurry"
+$ slack-message channel "send pancakes and hurry"
 ```
 
 You can also pass an ENV variable
 
 ```
-$ SLACK_TOKEN="token" slack-message "channel" "send pancakes and hurry"
+$ SLACK_TOKEN=token slack-message channel "send pancakes and hurry"
 ```
 
 ## License
