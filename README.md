@@ -62,14 +62,14 @@ You can also pass an ENV variable
 $ SLACK_TOKEN=token slack-message channel "send pancakes and hurry"
 ```
 
-## License
-
-MIT
-
 ## Alternatives
 
 * [slack](https://github.com/smallwins/slack) - Slack API console for Node and the browser
 * [slack-cli](https://github.com/candrholdings/slack-cli) - Slack CLI interface for various API endpoints
+
+## License
+
+MIT
 
 ## Sponsors
 
