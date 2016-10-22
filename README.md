@@ -66,6 +66,11 @@ $ SLACK_TOKEN=token slack-message channel "send pancakes and hurry"
 
 MIT
 
+## Alternatives
+
+* [slack](https://github.com/smallwins/slack) - Slack API console for Node and the browser
+* [slack-cli](https://github.com/candrholdings/slack-cli) - Slack CLI interface for various API endpoints
+
 ## Sponsors
 
 Two Bucks Ltd © 2016
