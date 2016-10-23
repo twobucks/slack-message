@@ -36,6 +36,7 @@
   "dependencies": {
     "cli-spinner": "^0.2.5",
     "commander": "^2.9.0",
+    "home-dir": "^1.0.0",
     "npmlog": "^4.0.0",
     "request": "^2.75.0",
     "request-promise": "^4.1.1",
