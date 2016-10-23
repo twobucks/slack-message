@@ -6,12 +6,6 @@ const util = require('./lib/util')
 const urlGenerator = require('./lib/url-generator')
 const tokenHelper = require('./lib/token-helper')
 
-function findToken(token, path) {
-  token = token || tokenHelper.getToken(path) ||
-    process.env.SLACK_TOKEN
-  return token
-}
-
 function generateMessageObject(channel, text, opts) {
   return {
     channel,
@@ -23,7 +17,7 @@ function generateMessageObject(channel, text, opts) {
 function send(channel, text, opts) {
   opts = opts || {}
 
-  opts.token = findToken(opts.token)
+  opts.token = tokenHelper.findToken(opts.token)
 
   if (!opts.token) {
     throw new Error('Token is required')
@@ -42,7 +36,6 @@ function send(channel, text, opts) {
   }
 
   const message = generateMessageObject(channel, text, opts)
-
   const sendMessageUrl = urlGenerator.generateSlackUrl(message)
 
   return postToSlack(sendMessageUrl)
@@ -75,7 +68,5 @@ function postToSlack(url) {
 }
 
 module.exports = {
-  send,
-  postToSlack,
-  findToken
+  send
 }

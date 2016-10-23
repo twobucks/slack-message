@@ -3,7 +3,7 @@ const fs = require('fs')
 const test = require('ava')
 const tokenHelper = require('../lib/token-helper')
 
-const findToken = require('../').findToken
+const findToken = tokenHelper.findToken
 
 const fileToken = 'FILE_TOKEN'
 const envToken = 'ENV_TOKEN'
