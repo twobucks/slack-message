@@ -1,4 +1,4 @@
-# Slack Message 
+# Slack Message
 
 [![Build Status](https://travis-ci.org/twobucks/slack-message.svg?branch=master)](https://travis-ci.org/twobucks/slack-message) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo) [![Downloads](https://img.shields.io/npm/dt/slack-message.svg)](https://npmjs.org/package/slack-message)
 
@@ -26,7 +26,7 @@ If you need a live token please follow the instructions about oAuth [api.slack.c
 ```
   $ slack-message
 
-  Usage: slack [options] <channel name> <message>
+  Usage: slack [options] <#channel || @user> <message>
 
   Options:
 
@@ -41,25 +41,31 @@ If you need a live token please follow the instructions about oAuth [api.slack.c
 Sending a message with inline token
 
 ```
-$ slack-message -t token-123-321 channel "I need some pancakes folks"
+$ slack-message -t token-123-321 #factory "I need some pancakes folks"
 ```
 
 Sending a message and saving the token for a later use
 
 ```
-$ slack-message -t token-123-321 -s channel "really, I need pancakes"
+$ slack-message -t token-123-321 -s #factory "really, I need pancakes"
+```
+
+Sending a direct message to a user
+
+```
+$ slack-message -t token-123-321 -s @chef "awesome pancakes!"
 ```
 
 If you have a saved token
 
 ```
-$ slack-message channel "send pancakes and hurry"
+$ slack-message #general "send pancakes and hurry"
 ```
 
 You can also pass an ENV variable
 
 ```
-$ SLACK_TOKEN=token slack-message channel "send pancakes and hurry"
+$ SLACK_TOKEN=token slack-message #random "I'm hungry"
 ```
 
 ## Alternatives

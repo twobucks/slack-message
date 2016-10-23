@@ -7,6 +7,8 @@ const urlGenerator = require('./lib/url-generator')
 const tokenHelper = require('./lib/token-helper')
 
 function generateMessageObject(channel, text, opts) {
+  // replace first char if it is a channel
+  channel = channel.replace(/^#/, '')
   return {
     channel,
     token: opts.token,
@@ -68,5 +70,6 @@ function postToSlack(url) {
 }
 
 module.exports = {
-  send
+  send,
+  generateMessageObject
 }
