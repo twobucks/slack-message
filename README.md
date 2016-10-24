@@ -26,7 +26,7 @@ If you need a live token please follow the instructions about oAuth [api.slack.c
 ```
   $ slack-message
 
-  Usage: slack [options] <#channel || @user> <message>
+  Usage: slack-message [options] <#channel || @user> <message>
 
   Options:
 
