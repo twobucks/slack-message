@@ -8,7 +8,7 @@ const json = require('../package.json')
 function run() {
   program
     .version(json.version)
-    .usage('[options] <channel name> <message>')
+    .usage('[options] <#channel | @user> <message>')
     .option('-t, --token <token>', 'token to use, reads SLACK_TOKEN if provided')
     .option('-s, --save-token', 'saves token for later use')
     .parse(process.argv)
