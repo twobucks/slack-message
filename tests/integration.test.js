@@ -9,6 +9,6 @@ test('should create a slack message', async t => {
     return
   }
 
-  const response = await main.send('pancakes', 'testing pancakes')
+  const response = await main.send('pancakes', 'testing pancakes?!"#$%"')
   t.true(JSON.parse(response).ok, 'response should be success')
 })
